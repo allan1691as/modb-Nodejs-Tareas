@@ -1,0 +1,51 @@
+
+<div class="card card-body p-4 rounded-0 bg-dark text-white col-md-4">
+  <form action="/tasks/add" method="POST">
+    <div>
+          <div >
+            <label for="title">Write a title</label>
+            <input type="text" name="title" placeholder="tittle" id="title" class="form-control rounded-0 bg-dark text-white">
+          </div> 
+    </div>              
+        <div>
+            <label for="description">Description:</label>
+          <textarea name="description" placeholder="Description" id="Description" class="form-control rounded-0 bg-dark text-white"></textarea>
+        </div>
+
+      <button class="btn btn-primary btn-sm mt-2">Add</button>
+</form>
+</div>
+
+<div class="p-4 rounded-0 col-md-7">
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                    <th>N</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ul>
+          {{#each tasks}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{title}}</td> 
+                <td>{{description}}</td>
+                <td>
+                    {{#if done}}
+                          <a href="/toggleDone/{{_id}}" class="btn btn-dark">Undone</a>
+                    {{else}}
+                          <a href="/toggleDone/{{_id}}" class="btn btn-success">Done</a>
+                    {{/if}}      
+
+                    <a href="/delete/{{_id}}" class="btn btn-danger">delete</a>
+                    <a href="./edit/{{_id}}" class="btn btn-info">update</a>
+                </td> 
+            </tr>
+            {{/each}}
+        </ul>
+            </tbody>
+        </table>
+</div>
